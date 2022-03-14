@@ -1,0 +1,52 @@
+<!--
+|************************************************************************************* 
+|   Filename: login.ejs
+|
+|   Purpose: This file contains the login view.
+|             
+|*************************************************************************************
+-->
+<%- include('imports/header'); -%>
+<body>
+    <%- include('imports/nav'); -%>
+    <!--Login form-->
+    <form class="cred">
+        <h2>Login</h2>
+        <div class="errors">
+        </div>
+        <label for="email"> Email</label>
+        <input type="text" name="email" id="email" required />
+        <label for="password"> Password</label>
+        <input type="password" name="password" id="password" required />
+        <button type="submit"> Login</button>
+    </form>
+</body>
+
+<!-- Javascript to handle user authentication-->
+<script>
+    const errors = document.querySelector('.errors'); //hidden div. Only shown when errors occur
+    const form = document.querySelector('form');
+    
+    //adding an event listener to the submit button
+    form.addEventListener('submit', async (e) =>{
+        e.preventDefault(); 
+        const email = form.email.value; 
+        const password = form.password.value;
+
+        //We try to call login post method
+        try {
+            //We create a function to call the login post method
+            const result = await fetch('/login', {
+                method: 'POST',
+                body: JSON.stringify({ email,password}),
+                headers: { 'Content-Type': 'application/json'}
+            });
+            const data = await result.json(); //get data returned from login post
+            if(data.errors) errors.textContent = data.errors; //data has errors. Show them to the user
+            if(data.user) location.assign('/general'); //user logged in succesfully. Go to the general page  
+        } catch (error) {
+            console.log(error); //Log the error
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,22 @@
+<!--
+|************************************************************************************* 
+|   Filename: index.ejs
+|
+|   Written by: Badrit Bin Imran- January 2022
+|
+|   Purpose: This file contains the index page.
+|             
+|*************************************************************************************
+-->
+<%- include('imports/header'); -%>
+<body>
+    <%- include('imports/nav'); -%>
+    <h1>Welcome to the encrypted chat room app. Please choose an option</h1>
+    <!-- List so that the user can select an option-->
+    <div class="indexList">
+        <a href="/general">1. General - Go to the General Room</a>
+        <a href="/login">2. Login - Sign in with an existing account</a>
+        <a href="/register">3. Register - Signup for new users</a>
+      </div>
+</body>
+</html>

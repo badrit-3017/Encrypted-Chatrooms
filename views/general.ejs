@@ -1,0 +1,72 @@
+<!--
+|************************************************************************************* 
+|   Filename: general.ejs
+|
+|   Purpose: This file contains the general chat room view.
+|             
+|*************************************************************************************
+-->
+
+<%- include('imports/header'); -%>
+<body>
+    <%- include('imports/nav'); -%>
+    <div class="messageScreen">
+    <!-- messages is the array of message documents passed in by the get handler-->
+    <% if (messages.length > 0){
+        messages.forEach(message => {%>
+          <!-- displaying each message details-->
+          <div class="singleMessage">
+            <% var x =  new Date(message.createdAt.toString());
+            d = x.toDateString();
+            t = x.toLocaleTimeString();
+            sent = `${d} at ${t}`;
+            %>
+            <p class="username"><%= message.username %></h3>
+              <p> &nbsp;:&nbsp; </p>
+            <p class="messageBody"><%= message.body %></p>
+            <p class="sent"><%= sent %></p>
+          </div>
+      <%  })
+      <!-- In case the messages collection is empty-->
+      } else {%>
+        <p>No messages to display</p>
+      <% } %>
+    </div>
+
+    <!-- Displaying the new message form-->
+    <form  class="messageForm">
+        <input type="text" name="message" id="message" placeholder="Your message here" required />
+        <button type="submit"> Submit</button>
+    </form>
+
+</body>
+
+<!-- Javascript to handle new message creation-->
+<script>
+  //getting message details
+  const form = document.querySelector('form');
+  const Username = document.querySelector('.username');
+  const username = Username.firstChild.data;
+
+  //adding an event listener to the submit button
+  form.addEventListener('submit', async (e) =>{
+      e.preventDefault();
+      const body= form.message.value; //message text
+      try {
+          //Defining function to call the general post method
+          const result = await fetch('/general', {
+              method: 'POST',
+              body: JSON.stringify({ username,body}),
+              headers: { 'Content-Type': 'application/json'}
+          });          
+          const data = await result.json(); //get result from the post method
+          //Error while creating message
+          if( data.errors) errors.textContent = data.errors;
+      } catch (error) {
+          console.log("Error while logging in");
+      }
+      //Reload the page
+      location.reload();
+  })
+</script>
+</html>

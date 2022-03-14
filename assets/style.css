@@ -1,0 +1,157 @@
+/*******************************************************************
+|
+|   Filename: style.css
+|   
+|   Purpose: CSS stylesheet for the chatrooms project
+|
+|*******************************************************************/
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300&family=Raleway&family=Roboto:wght@300&display=swap');
+
+/*---------------------------- Body -------------------------------*/
+
+body{
+  background-color: rgb(194, 167, 221); 
+  font-family: 'Roboto', sans-serif;
+  margin: none;
+}
+
+.indexList{
+  display: flex;
+  flex-direction: column;
+}
+.indexList a{
+  padding: 5px;
+  margin: 5px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 2rem;
+  color: dimgrey;
+}
+.indexList a:hover{
+  font-size: 3rem;
+  color: rgb(255, 0, 0);
+}
+
+/*---------------------------- Nav Bar -------------------------------*/
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-direction: row;
+    background-color: #333;;
+    color: white;
+    font-family: 'Raleway', sans-serif;
+    border-radius: 5px;
+}
+
+nav h1{
+    padding: 8px;
+}
+
+nav ul{
+    list-style-type: none;
+}
+
+li {
+    float: left;
+    padding: 8px;
+    margin: 8px;
+}
+  
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+  }
+
+/*---------------------------- Message Display Screen-------------------------------*/
+
+.messageScreen{
+    border: 2px;
+    border-radius: 5px;
+    margin: 8px;
+    border-radius: 5px;
+    overflow: auto;
+    max-height: 60vh;
+    font-family: 'Merriweather', serif;
+}
+.singleMessage{
+    display: flex;
+    flex-direction: row;
+    padding: 0px 20px;
+}
+.singleMessage:hover {
+  color: red;
+}
+.singleMessage:nth-child(2n+2) {
+  background-color: white;
+}
+
+.singleMessage:nth-child(odd) {
+  background-color: whitesmoke;
+}
+
+.sent {
+    margin-left: auto;
+    font-size: .8rem;
+  }
+  
+
+/*---------------------------- FORM-------------------------------*/
+
+/* Login and registration forms have the "cred" class */
+.cred  {
+    width: 25vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid crimson;
+    border-radius: 5px;
+    background-color: whitesmoke;
+    font-family: 'Merriweather', serif;
+  }
+  input{
+      width: 20vw;
+      margin: 10px;
+      padding: 8px;
+  }
+  label{
+    display: block;
+    margin: 10px;
+    padding: 8px;
+  }
+  button{
+    margin: 10px;
+    padding: 8px;
+    background-color: #333;
+    color: white;
+    border-radius: 5px;
+    border: 2px solid white;
+    width: 100px;
+    font-family: 'Merriweather', serif;
+  }
+
+/*-------------------------------------------General Page----------------------------*/
+/* Form for typing messages */
+.messageForm{
+  background-color: whitesmoke;
+  border-radius: 5px;
+  max-width: 30vw;
+  margin: auto;
+  width: 50%;
+}
+
+/* ------------------------------------------Scroll Bar------------------------------------------*/
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: black;
+  border-radius: 10px;
+}

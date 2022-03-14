@@ -1,0 +1,24 @@
+<!--
+|************************************************************************************* 
+|   Filename: nav.ejs
+|
+|   Purpose: This file contains the nav bar.
+|             
+|*************************************************************************************
+-->
+
+<nav>
+    <h1> Chatrooms</h1>
+<ul>
+  <!-- if user logged in we show username and logout options-->
+  <% if (username){ %>
+    <li class="username"> <%= username %> </li>
+    <li><a href="/logout"> Logout</a></li>
+    <% } else { %>
+    <!-- else we show login and register options-->
+    <li><a href="/login"> Login</a></li>
+    <li><a href="/register"> Register</a></li>
+    <% } %>
+  </ul>
+</nav>
+
